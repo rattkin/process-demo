@@ -1,9 +1,9 @@
 {
   "targets": {
-    "process-demo-eeb2c": {
+    "process-demo-654f3": {
       "hosting": {
         "process-demo-fire": [
-          "process-demo-eeb2c"
+          "process-demo-654f3"
         ]
       }
     }

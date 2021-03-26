@@ -1,5 +1,15 @@
 # process-demoFire
 
+The goal of the app is a demonstration of simple process workflow. Usable in manufacturing, production, stock inventory.
+
+Demo app: (https://process-demo-654f3.web.app)
+
+Features:
+* responsive, mobile first
+* easy to use
+* fast
+* works offline
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
 
 ## Development server
