@@ -1,0 +1,82 @@
+################################################################################
+# GLOBAL PARAMETERS
+#
+image: $CI_REGISTRY/dn/docker/docker:stable
+
+variables:
+    TRION_VERSION: 11.0.6
+
+stages:
+    - build
+    - test
+    - release
+
+build:
+    stage: build
+    image: $CI_REGISTRY/dn/docker/trion/ng-cli:${TRION_VERSION}
+    script:
+        - npm ci
+        - npm run build
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - dist/
+            - node_modules/
+    tags:
+        - docker
+    except:
+        - tags
+
+# test:karma+coverage:
+#     stage: test
+#     image: $CI_REGISTRY/dn/docker/trion/ng-cli-karma:${TRION_VERSION}
+#     coverage: '/Statements.*?(\d+(?:\.\d+)?)%/'
+#     dependencies:
+#         - build
+#     artifacts:
+#         paths:
+#             - coverage/
+#     script:
+#         - ng test --progress false --watch false --code-coverage
+#     tags:
+#         - docker
+#     except:
+#         - tags
+
+# test:e2e:
+#     stage: test
+#     image: $CI_REGISTRY/dn/docker/trion/ng-cli-e2e:${TRION_VERSION}
+#     script:
+#         - ./node_modules/protractor/bin/webdriver-manager update --versions.chrome 87.0.4280.88 && npm run e2e
+#     tags:
+#         - docker
+
+test:nglint:
+    stage: test
+    image: $CI_REGISTRY/dn/docker/trion/ng-cli:${TRION_VERSION}
+    script:
+        - npm run lint
+    tags:
+        - docker
+    except:
+        - tags
+    dependencies:
+        - build
+
+semantic-release:
+    stage: release
+    image: $CI_REGISTRY/dn/docker/node:lts
+    before_script:
+        - npm install -g semantic-release @semantic-release/gitlab @semantic-release/exec
+    script:
+        - semantic-release -b $CI_COMMIT_REF_NAME
+    artifacts:
+        paths:
+            - "release.env"
+        expire_in: 1 week
+    tags:
+        - docker
+    except:
+        - tags
+    only:
+        - master

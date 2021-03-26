@@ -1,0 +1,12 @@
+<div class="content">
+  <mat-card
+    *ngFor="let cat of category | keyvalue"
+    routerLink="products/{{ cat.key }}"
+  >
+    <h2>
+      {{ cat.value }}
+    </h2>
+  </mat-card>
+  <br>
+  <br>
+</div>

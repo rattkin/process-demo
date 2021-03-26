@@ -1,0 +1,18 @@
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1em;
+    margin: 1em;
+}
+
+mat-card {
+    padding: 3em 0;
+    text-align: center;
+    background-color: #f0eeee;
+}
+
+.center {
+    display: block;
+    margin: 3em auto;
+    width: 90%;
+}

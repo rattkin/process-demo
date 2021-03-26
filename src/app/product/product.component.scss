@@ -1,0 +1,31 @@
+mat-card {
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #f0eeee;
+    cursor: pointer;
+}
+
+mat-card-subtitle {
+    color: #000;
+}
+
+mat-card-footer {
+    color: rgba(0, 0, 0, .7);
+    display: grid;
+    grid-template-columns: 26% 14% 60%;
+    position: absolute;
+    bottom: 20px;
+    left: 45px;
+    right: 28px;
+
+    .quantityToday {
+        text-align: right;
+    }
+
+    .weight {
+        text-align: right;
+    }
+
+    .id {}
+}

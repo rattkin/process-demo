@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Make process<br /></h1>
+
+<div mat-dialog-content>
+  <p>
+    {{ product.name }}
+  </p>
+  <br />
+  <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="auth.user | async">
+    <mat-form-field>
+      <mat-label>Count</mat-label>
+      <input matInput formControlName="quantity" type="number" required />
+    </mat-form-field>
+  </form>
+</div>
+
+<div *ngIf="!(auth.user | async)">
+  Please login
+  <app-signin></app-signin>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="submit()" *ngIf="auth.user | async">OK</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,15 @@
+<mat-card class="item" (click)="showProcessEditor(product)" mat-ripple>
+  <mat-card-header>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-footer>
+    <span class="id"> {{ product.id }}</span>
+    <span class="weight">{{ product.weight | number }}g </span>
+    <span class="quantityToday">
+      <span *ngIf="quantityToday | async as quantity">
+        Dnes / сьогодні:
+        <strong>{{ quantity }}</strong>
+      </span>
+    </span>
+  </mat-card-footer>
+</mat-card>

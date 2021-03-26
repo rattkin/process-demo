@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "process-demo-eeb2c": {
+      "hosting": {
+        "process-demo-fire": [
+          "process-demo-eeb2c"
+        ]
+      }
+    }
+  }
+}

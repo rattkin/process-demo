@@ -1,0 +1,15 @@
+<div class="content">
+  <div *ngIf="auth.user | async">
+    Logged in:<br> {{ (auth.user | async)?.email }}
+    <br>
+    <button mat-raised-button type="button" (click)="auth.signOut()">
+      Logout
+    </button>
+  </div>
+
+  <div *ngIf="!(auth.user | async)">
+    <button mat-raised-button type="button" (click)="auth.googleSignin()">
+      Login
+    </button>
+  </div>
+</div>
