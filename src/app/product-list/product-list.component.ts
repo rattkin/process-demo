@@ -42,16 +42,14 @@ export class ProductListComponent implements OnInit {
 
         // TODO sink
 
-        // TODO import 
+        // TODO import to firebase
         // this.auth.user.subscribe(
         //     user => {
-        //         this.mock.forEach(product =>
-        //             this.store.collection('products').doc(product.id).set({
-        //                 "name": product.name,
-        //                 "weight": product.weight,
-        //                 "category": product.category,
-        //             })
-        //         )
+        //         this.mock.forEach(product => {
+        //             const id = product?.id;
+        //             delete product.id;
+        //             this.store.collection('products').doc(id).set(product)
+        //         })
         //     }
         // )
     }

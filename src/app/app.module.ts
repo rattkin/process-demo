@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,6 +17,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { CloudinaryConfiguration, CloudinaryModule } from '@cloudinary/angular-5.x';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import * as Cloudinary from 'cloudinary-core';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,9 +33,6 @@ import { ProcessEditorComponent } from './process-editor/process-editor.componen
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
 import { SigninComponent } from './signin/signin.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { MatRippleModule } from '@angular/material/core';
 
 registerLocaleData(localeCs);
 @NgModule({
@@ -67,6 +69,10 @@ registerLocaleData(localeCs);
         MatTableExporterModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         NgxChartsModule,
+        CloudinaryModule.forRoot(Cloudinary,
+            {
+                cloud_name: 'dfm0kilqo'
+            } as CloudinaryConfiguration)
     ],
     exports: [
     ],

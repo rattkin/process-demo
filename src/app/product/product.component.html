@@ -2,12 +2,20 @@
   <mat-card-header>
     <mat-card-title>{{ product.name }}</mat-card-title>
   </mat-card-header>
+
+  <div class="mat-card-image">
+    <cl-image *ngIf="product.clPhoto" dpr="auto" responsive width="400" public-id="{{product.clPhoto}}" loading="lazy"
+      crop="scale" quality="auto" fetch-format="auto" class="photo">
+    </cl-image>
+    <img src="assets/logo chilli stroke.svg" class="noPhoto" *ngIf="!product.clPhoto">
+  </div>
+
   <mat-card-footer>
-    <span class="id"> {{ product.id }}</span>
+    <span class="id"> {{ product.allergen }}</span>
     <span class="weight">{{ product.weight | number }}g </span>
     <span class="quantityToday">
       <span *ngIf="quantityToday | async as quantity">
-        Dnes / сьогодні:
+        Today made:
         <strong>{{ quantity }}</strong>
       </span>
     </span>

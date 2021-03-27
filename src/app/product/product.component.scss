@@ -11,7 +11,7 @@ mat-card-subtitle {
 }
 
 mat-card-footer {
-    color: rgba(0, 0, 0, .7);
+    color: rgba(0, 0, 0, 0.7);
     display: grid;
     grid-template-columns: 26% 14% 60%;
     position: absolute;
@@ -26,6 +26,26 @@ mat-card-footer {
     .weight {
         text-align: right;
     }
+}
 
-    .id {}
+.mat-card-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    cl-image,
+    img {
+        flex-grow: 1;
+        max-width: 100%;
+        object-fit: contain;
+    }
+}
+
+.noPhoto {
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+    background: #ddd;
+    padding: 25px 0;
 }
