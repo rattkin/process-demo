@@ -2,6 +2,7 @@
   <mat-card
     *ngFor="let cat of category | keyvalue"
     routerLink="products/{{ cat.key }}"
+    mat-ripple
   >
     <h2>
       {{ cat.value }}
