@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import firebase from 'firebase/app';
 import { AuthService } from '../auth.service';
@@ -38,7 +38,7 @@ export class ProcessEditorComponent implements OnInit {
     cancel(): void {
         this.dialogRef.close();
     }
-
+    
     submit(): void {
         this.auth.user.subscribe(user => {
 
@@ -48,11 +48,26 @@ export class ProcessEditorComponent implements OnInit {
                 date: Timestamp.now(),
                 person: user.email
             };
-            this.store.collection<Process>('process').add(this.process);
-            this.dialogRef.close();
+            if (this.form.valid) {
+                this.store.collection<Process>('process').add(this.process);
+                this.dialogRef.close();
+            } else {
+                this.markFormGroupTouched(this.form);
+            }
         })
+    }
 
+    /**
+    * Marks all controls in a form group as touched
+    * @param formGroup - The form group to touch
+    */
+    private markFormGroupTouched(formGroup: FormGroup) {
+        (<any>Object).values(formGroup.controls).forEach(control => {
+            control.markAsTouched();
 
+            if (control.controls) {
+                this.markFormGroupTouched(control);
+            }
+        });
     }
 }
-
