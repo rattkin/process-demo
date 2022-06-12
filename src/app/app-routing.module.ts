@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {
     AngularFireAuthGuard,
     redirectUnauthorizedTo
-} from '@angular/fire/auth-guard';
+} from '@angular/fire/compat/auth-guard';
 import {
     RouterModule,
     Routes
@@ -50,7 +50,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
 
     exports: [RouterModule]
 })

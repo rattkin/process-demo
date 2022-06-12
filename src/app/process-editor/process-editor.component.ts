@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { AuthService } from '../auth.service';
 import { Process } from '../shared/interface/process.interface';
 import { Product } from '../shared/interface/product.interface';
@@ -20,13 +20,13 @@ export class ProcessEditorComponent implements OnInit {
     public product: Product;
 
     form = this.formBuilder.group({
-        quantity: new FormControl('', [Validators.required, Validators.min(1)]),
+        quantity: new UntypedFormControl('', [Validators.required, Validators.min(1)]),
     });
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         public dialogRef: MatDialogRef<ProcessEditorComponent>,
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private store: AngularFirestore,
         public auth: AuthService
     ) { }
@@ -61,7 +61,7 @@ export class ProcessEditorComponent implements OnInit {
     * Marks all controls in a form group as touched
     * @param formGroup - The form group to touch
     */
-    private markFormGroupTouched(formGroup: FormGroup) {
+    private markFormGroupTouched(formGroup: UntypedFormGroup) {
         (<any>Object).values(formGroup.controls).forEach(control => {
             control.markAsTouched();
 

@@ -3,7 +3,10 @@
     <mat-form-field appearance="outline">
       <mat-label>Date from</mat-label>
       <input matInput [matDatepicker]="pickerFrom" formControlName="dateFrom" />
-      <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerFrom"
+      ></mat-datepicker-toggle>
       <mat-datepicker #pickerFrom></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -13,25 +16,43 @@
       <mat-datepicker #pickerTo></mat-datepicker>
     </mat-form-field>
 
-    <button mat-raised-button (click)="
+    <button
+      mat-raised-button
+      (click)="
         exporter.exportTable('xls', {
           fileName: 'Processes ' + form.controls.dateFrom.value
         })
-      ">
+      "
+    >
       Excel Export
     </button>
   </form>
 </div>
 
 <div class="graph">
-  <ngx-charts-bar-vertical [view]="" [scheme]="colorScheme" [results]="graphData" [gradient]="gradient"
-    [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel" [animations]="false">
+  <ngx-charts-bar-vertical
+    [view]=""
+    [results]="graphData"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [animations]="false"
+  >
   </ngx-charts-bar-vertical>
 </div>
 
-<table mat-table [dataSource]="this.dataSource" matSort matTableExporter filename #exporter="matTableExporter"
-  class="mat-elevation-z3">
+<table
+  mat-table
+  [dataSource]="this.dataSource"
+  matSort
+  matTableExporter
+  filename
+  #exporter="matTableExporter"
+  class="mat-elevation-z3"
+>
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef>Date</th>
     <td mat-cell *matCellDef="let element">
